@@ -21,7 +21,7 @@ export default function GeneratePage() {
 
   const submitLinks = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/add", {
+      const res = await fetch("/api/add", { // relative URL
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ handle, pic, links }),
