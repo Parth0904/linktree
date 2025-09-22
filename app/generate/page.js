@@ -17,9 +17,7 @@ export default function GeneratePage() {
     );
   };
 
-  const addLink = () => {
-    setLinks(prev => [...prev, { link: "", linktext: "" }]);
-  };
+  const addLink = () => setLinks(prev => [...prev, { link: "", linktext: "" }]);
 
   const submitLinks = async () => {
     try {
@@ -48,17 +46,17 @@ export default function GeneratePage() {
   const isDisabled = !handle || !pic || links.some(link => !link.linktext || !link.link);
 
   return (
-    <main className="flex flex-col md:flex-row items-center justify-around h-screen bg-[#1F57D2] p-4">
+    <main className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-[#1F57D2] p-4 md:p-10 gap-8">
       <section className="flex flex-col items-center justify-center w-full md:w-1/2">
         <ToastContainer />
-        <div className="w-full max-w-md">
-          <h1 className="text-3xl font-bold mb-6 text-white text-center">
+        <div className="w-full max-w-md space-y-6">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white text-center">
             Create your Bittree
           </h1>
 
-          {/* Step 1 */}
-          <div className="mb-6">
-            <h2 className="font-semibold mb-2 text-white">Step 1: Claim your Handle</h2>
+          {/* Step 1: Handle */}
+          <div className="flex flex-col gap-2">
+            <label className="text-white font-semibold">Step 1: Claim your Handle</label>
             <input
               value={handle}
               onChange={e => setHandle(e.target.value)}
@@ -68,11 +66,11 @@ export default function GeneratePage() {
             />
           </div>
 
-          {/* Step 2 */}
-          <div className="mb-6">
-            <h2 className="font-semibold mb-2 text-white">Step 2: Add Links</h2>
+          {/* Step 2: Links */}
+          <div className="flex flex-col gap-2">
+            <label className="text-white font-semibold">Step 2: Add Links</label>
             {links.map((item, index) => (
-              <div key={index} className="flex gap-2 mb-2">
+              <div key={index} className="flex flex-col sm:flex-row gap-2">
                 <input
                   value={item.linktext}
                   onChange={e => handleChange(index, "linktext", e.target.value)}
@@ -91,15 +89,15 @@ export default function GeneratePage() {
             ))}
             <button
               onClick={addLink}
-              className="bg-black text-white px-4 py-2 rounded-full mt-2"
+              className="bg-black text-white px-4 py-2 rounded-full mt-2 w-full sm:w-auto"
             >
               + Add Link
             </button>
           </div>
 
-          {/* Step 3 */}
-          <div className="mb-6">
-            <h2 className="font-semibold mb-2 text-white">Step 3: Add Picture</h2>
+          {/* Step 3: Picture */}
+          <div className="flex flex-col gap-2">
+            <label className="text-white font-semibold">Step 3: Add Picture</label>
             <input
               value={pic}
               onChange={e => setPic(e.target.value)}
@@ -112,8 +110,8 @@ export default function GeneratePage() {
           <button
             disabled={isDisabled}
             onClick={submitLinks}
-            className={`w-full rounded-full px-6 py-3 font-semibold ${
-              isDisabled ? "bg-slate-500" : "bg-black text-white"
+            className={`w-full rounded-full px-6 py-3 font-semibold transition ${
+              isDisabled ? "bg-slate-500 cursor-not-allowed" : "bg-black text-white hover:bg-gray-900"
             }`}
           >
             Create your Bittree
@@ -122,11 +120,11 @@ export default function GeneratePage() {
       </section>
 
       {/* Right side image */}
-      <section className=" md:block w-1/2 flex justify-center">
+      <section className="w-full md:w-1/2 flex justify-center">
         <img
           src="https://assets.production.linktr.ee/auth/3532/media/banner-login-desktop.f355be949b508c58ec2d.webp"
           alt="form side"
-          className="max-w-sm rounded-lg"
+          className="max-w-sm md:max-w-md rounded-lg object-contain"
         />
       </section>
     </main>
