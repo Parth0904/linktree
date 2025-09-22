@@ -19,7 +19,7 @@ export default async function HandlePage({ params }) {
     return (
       <main className="flex items-center justify-center h-screen bg-red-100">
         <h1 className="text-3xl font-bold text-red-600">
-          Handle "{handle}" not found ❌
+          Handle {handle} not found ❌
         </h1>
       </main>
     );
